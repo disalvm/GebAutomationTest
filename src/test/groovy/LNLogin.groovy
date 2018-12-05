@@ -26,7 +26,7 @@ class LNLogin extends Specification {
         at loginPage
 
         when: "The username and password are entered"
-        loginPage.completelogin("mike.disalvo@gmail.com", "XGAL2sNI0d94")
+        loginPage.completelogin("", "")
 
         then: "The User Profile is displayed "
         def profilePage = new LNProfilePage()
