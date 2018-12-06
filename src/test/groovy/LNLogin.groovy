@@ -1,9 +1,8 @@
 import pages.LNMainPage
 import pages.LNProfilePage
 import spock.lang.Specification
-import geb.spock.GebSpec
 
-class LNLogin extends GebSpec {
+class LNLogin extends Specification {
 
 //    def
 //
@@ -15,26 +14,25 @@ class LNLogin extends GebSpec {
 
 //    given, when, and, then
 
-//    Initialize the pages I am working on
-    def loginPage = new LNMainPage()
-    def profilePage = new LNProfilePage()
-    static username = 'username'
-    static password = 'Password'
-
+    // Navigate to the linkedin Page
     def setup() {
-        // THIS WILL EXECUTE THE STATIC URL AND THE AT IN THE PAGE OBJECT.
-        to loginPage
+//        to LNMainPage
     }
 
     def "Log into linkedin from main page"(){
         given: "The user is on the login page"
+        def loginPage = new LNMainPage()
         waitFor {loginPage.loginContainer}
+        at loginPage
 
         when: "The username and password are entered"
-        loginPage.completelogin(username, password)
+        loginPage.completelogin("mike.disalvo@gmail.com", "XGAL2sNI0d94")
 
         then: "The User Profile is displayed "
-        assert profilePage.userProfileName() == "Michael Disalvo"
+        def profilePage = new LNProfilePage()
+
+        waitFor {profilePage.userProfileName}
+        assert profilePage.userProfileName.text() == "Michael DiSalvo"
     }
 
 
