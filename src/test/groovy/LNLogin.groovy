@@ -18,7 +18,8 @@ class LNLogin extends GebSpec {
     // Navigate to the linkedin Page
 
 //    Initialize the PAGE OBJECTS
-    def loginPage = new LNMainPage()
+    LNMainPage loginPage = new LNMainPage()
+    LNProfilePage profilePage = new LNProfilePage()
 
     def setup() {
         to LNMainPage
@@ -29,11 +30,12 @@ class LNLogin extends GebSpec {
         at loginPage
 
         when: "The username and password are entered"
-        loginPage.completelogin("", "")
+        loginPage.completelogin("michael.disalvo@gmail.com", "XGAL2sNI0d94")
 
         then: "The User Profile is displayed "
-        def profilePage = new LNProfilePage()
-        profilePage.userProfileName()
+        at profilePage
+        def usernameText = profilePage.returnProfileName()
+        System.out.println(usernameText)
 
     }
 
