@@ -3,15 +3,15 @@ package pages
 import geb.Page
 
 class LNProfilePage extends Page {
+//    Main page object
 
-    static url = "https://www.linkedin.com/feed/"
-//    static at = { waitFor{userProfileName.present}}
+    static at = { userProfileName.text() == "Michael Disalvo"}
     static content = {
-        userProfileName  { $('.feed-identity-module__actor-meta > a:nth-child(3) > span').text()}
+        userProfileName  { $('.feed-identity-module__actor-meta > a:nth-child(3) > span')}
     }
 
     def returnProfileName(){
-        userProfileName
+       return userProfileName.text()
     }
 
 }
