@@ -3,20 +3,19 @@
          xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <groupId>GebAutomationTest</groupId>
     <artifactId>GebAutomationTest</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <!-- PROPERTIES geb, spock, Selenium to use... -->
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <!--<gebVersion>1.0</gebVersion>-->
-        <seleniumVersion>3.11.0</seleniumVersion>
-    </properties>
+    <!--<properties>-->
+        <!--<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>-->
+        <!--&lt;!&ndash;<gebVersion>1.0</gebVersion>&ndash;&gt;-->
+        <!--<seleniumVersion>3.11.0</seleniumVersion>-->
+    <!--</properties>-->
 
     <build>
-        <defaultGoal>install</defaultGoal>
+        <!--<defaultGoal>install</defaultGoal>-->
         <plugins>
             <!-- Mandatory plugins for using Spock -->
             <plugin>
@@ -24,30 +23,31 @@
                 visit https://github.com/groovy/GMavenPlus/wiki -->
                 <groupId>org.codehaus.gmavenplus</groupId>
                 <artifactId>gmavenplus-plugin</artifactId>
-                <version>1.6</version>
+                <version>1.6.2</version>
                 <executions>
                     <execution>
                         <goals>
                             <goal>compile</goal>
                             <goal>compileTests</goal>
+                            <goal>execute</goal>
                         </goals>
                     </execution>
                 </executions>
             </plugin>
             <!-- Optional plugins for using Spock -->
             <!-- Only required if names of spec classes don't match default Surefire patterns (`*Test` etc.) -->
-            <!--<plugin>-->
-            <!--<artifactId>maven-surefire-plugin</artifactId>-->
-            <!--&lt;!&ndash;<version>2,20.1</version>&ndash;&gt;-->
-            <!--<configuration>-->
-            <!--<useFile>false</useFile>-->
-            <!--<includes>-->
-            <!--<include>**/*Test.java</include>-->
-            <!--<include>**/*Spec.java</include>-->
-            <!--</includes>-->
-            <!--</configuration>-->
-            <!--</plugin>-->
-            <!-- Only required for spock-example build -->
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.20.1</version>
+                <configuration>
+                    <useFile>false</useFile>
+                    <includes>
+                        <include>**/*Test.java</include>
+                        <include>**/*Spec.java</include>
+                    </includes>
+                </configuration>
+            </plugin>
+            <!--Only required for spock-example build-->
         </plugins>
     </build>
 
@@ -62,60 +62,43 @@
         </dependency>
 
         <!-- DRIVERS -->
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-firefox-driver</artifactId>
-            <version>3.11.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-chrome-driver</artifactId>
-            <version>${seleniumVersion}</version>
-            <!--THE SCOPE WILL DEFINE DIRECTLY TO THE TEST LOCATION IN JAVA IF USED>-->
-            <!--<scope>test</scope>-->
-        </dependency>
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-ie-driver</artifactId>
-            <version>${seleniumVersion}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-safari-driver</artifactId>
-            <version>${seleniumVersion}</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.seleniumhq.selenium</groupId>-->
+            <!--<artifactId>selenium-firefox-driver</artifactId>-->
+            <!--<version>3.11.0</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>org.seleniumhq.selenium</groupId>-->
+            <!--<artifactId>selenium-chrome-driver</artifactId>-->
+            <!--<version>${seleniumVersion}</version>-->
+            <!--&lt;!&ndash;THE SCOPE WILL DEFINE DIRECTLY TO THE TEST LOCATION IN JAVA IF USED>&ndash;&gt;-->
+            <!--&lt;!&ndash;<scope>test</scope>&ndash;&gt;-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>org.seleniumhq.selenium</groupId>-->
+            <!--<artifactId>selenium-ie-driver</artifactId>-->
+            <!--<version>${seleniumVersion}</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>org.seleniumhq.selenium</groupId>-->
+            <!--<artifactId>selenium-safari-driver</artifactId>-->
+            <!--<version>${seleniumVersion}</version>-->
+        <!--</dependency>-->
         <!--<dependency>-->
         <!--<groupId>org.seleniumhq.selenium</groupId>-->
         <!--<artifactId>selenium-htmlunit-driver</artifactId>-->
         <!--<version>${seleniumVersion}</version>-->
         <!--</dependency>-->
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-support</artifactId>
-            <version>2.52.0</version>
-            <type>pom</type>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.seleniumhq.selenium</groupId>-->
+            <!--<artifactId>selenium-support</artifactId>-->
+            <!--<version>2.52.0</version>-->
+            <!--<type>pom</type>-->
+        <!--</dependency>-->
 
 
-        <!-- GEB and SPOCK AS I WILL LIKELY NEED TO CHANGE-->
-        <dependency>
-            <groupId>org.gebish</groupId>
-            <artifactId>geb-spock</artifactId>
-            <version>2.2</version>
-        </dependency>
 
-        <dependency>
-            <groupId>org.gebish</groupId>
-            <artifactId>geb-core</artifactId>
-            <version>2.1</version>
-        </dependency>
 
-        <dependency>
-            <groupId>org.codehaus.groovy</groupId>
-            <artifactId>groovy-all</artifactId>
-            <version>2.5.0</version>
-            <!--<scope>test</scope>-->
-        </dependency>
         <!--<dependency>-->
         <!--&lt;!&ndash;<groupId>org.spockframework</groupId>&ndash;&gt;-->
         <!--&lt;!&ndash;<artifactId>spock-core</artifactId>&ndash;&gt;-->
@@ -126,13 +109,37 @@
         <dependency>
             <groupId>org.spockframework</groupId>
             <artifactId>spock-core</artifactId>
-            <version>1.2-groovy-2.5</version>
+            <version>1.2-groovy-2.4</version>
         </dependency>
         <dependency>
             <groupId>org.spockframework</groupId>
             <artifactId>spock-unitils</artifactId>
-            <version>1.2-groovy-2.5</version>
+            <version>1.2-groovy-2.4</version>
         </dependency>
+
+        <!-- GEB DEPENDENCY -->
+        <dependency>
+            <groupId>org.gebish</groupId>
+            <artifactId>geb-core</artifactId>
+            <version>2.2</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.gebish/geb-spock -->
+        <dependency>
+            <groupId>org.gebish</groupId>
+            <artifactId>geb-spock</artifactId>
+            <version>2.2</version>
+        </dependency>
+
+        <!--GROOVY-->
+        <!--https://mvnrepository.com/artifact/org.codehaus.groovy/groovy-all -->
+        <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy-all</artifactId>
+            <version>2.4.15</version>
+            <type>pom</type>
+        </dependency>
+
 
     </dependencies>
 

@@ -13,7 +13,6 @@ class LNMainPage extends Page {
         userName { $("input", id: "login-email")}
         password { $("input", id: "login-password")}
         loginButton { $("input", id: "login-submit")}
-
     }
 
     def completelogin(usernameString, passwordString){
@@ -21,6 +20,10 @@ class LNMainPage extends Page {
         password.value(passwordString)
         //Click the login button
         loginButton.click()
+    }
+
+    def waitForElement(element){
+        waitFor{element}
     }
 
 }
